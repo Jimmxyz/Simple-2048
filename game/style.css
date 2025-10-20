@@ -1,0 +1,364 @@
+body {
+    background-color: rgb(52, 52, 52);
+}
+h1 {
+    color: rgb(255, 255, 255);
+    margin-top: 0px;
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+}
+h2 {
+    color: rgb(255, 255, 255);
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+    padding: 20px;
+}
+h3 {
+    color: rgb(255, 255, 255);
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 15px;
+}
+h4 {
+    color: rgb(255, 255, 255);
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+    padding: 20px;
+}
+h5 {
+    color: rgb(255, 255, 255);
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+    padding: 20px;
+}
+p {
+    color: rgb(157, 157, 157);
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+}
+a:visited {
+    color: rgb(157, 157, 157);
+}
+a {
+    color: rgb(157, 157, 157);
+}
+a:hover {
+    color: rgb(109, 109, 225);
+}
+#menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+    align-content: center;
+}
+#menuSetUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+    align-content: center;
+}
+header {
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 41px;
+    background-image:
+        linear-gradient(
+            280deg,
+            transparent 0%,
+            rgba(75, 75, 75, 0.2) 50%,
+            rgba(75, 75, 75, 0.4) 60%,
+            rgba(75, 75, 75, 0.6) 70%,
+            rgba(75, 75, 75, 0.8) 80%,
+            rgba(75, 75, 75, 1) 90%
+        ),
+        url("../2048Favicon.png");
+    background-color: rgb(75, 75, 75);
+    background-size: 120px;
+    image-rendering: pixelated;
+    background-position: right;
+    background-repeat: no-repeat;
+    transition: ease 0.2s;
+}
+header:hover {
+    background-size: 200px;
+    transition: ease 0.2s;
+}
+.btn {
+    background-color: rgb(81, 81, 227);
+    border: 0px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-right: 10px;
+    color: rgb(255, 255, 255);
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: larger;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+#nameArea {
+    background-color: rgb(255, 255, 255);
+    border: 0px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-right: 10px;
+    color: rgb(0, 0, 0);
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: larger;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+#nameArea:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+#nameArea:focus {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 5px solid rgb(81, 81, 227);
+    outline: none;
+}
+#credit {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+#br-credit {
+    display: none;
+}
+@media (min-width: 850px) and (max-width: 1035px) {
+    #credit {
+        font-size: small;
+        font-weight: 600;
+    }
+}
+@media (min-width: 700px) and (max-width: 850px) {
+    #credit {
+        font-size: x-small;
+        font-weight: 500;
+    }
+}
+@media (max-width: 700px) {
+    #credit {
+        font-size: xx-small;
+        font-weight: 400;
+    }
+    #br-credit {
+        display: inline;
+    }
+}
+/* Game CSS : */
+#game {
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    max-height: 100%;
+}
+#game_screen {
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-height: 100%;
+}
+#game_info {
+    flex: 1;
+    background-color: rgb(75, 75, 75);
+    border-radius: 5px;
+    padding: 20px;
+    height: 200px;
+}
+#game_info_mobile {
+    flex: 1;
+    background-color: rgb(75, 75, 75);
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    display: none;
+    max-height: 150px;
+    margin-right: 25vw;
+    margin-left: 25vw;
+}
+#game_area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 75vw;
+    max-height: 100%;
+    aspect-ratio: 1 / 1;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.cell {
+    height: 25%;
+    aspect-ratio: 1 / 1;
+    background-color: rgb(61, 61, 61);
+    box-sizing: border-box;
+    width: 100%;
+    border: solid #151515 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    align-content: center;
+}
+#COL0CELL3 {
+    border-bottom-left-radius: 10px;
+}
+#COL0CELL0 {
+    border-top-left-radius: 10px;
+}
+#COL3CELL3 {
+    border-bottom-right-radius: 10px;
+}
+#COL3CELL0 {
+    border-top-right-radius: 10px;
+}
+#tuto {
+    text-align: center;
+    background-color: rgba(75, 75, 75, 0.7);
+    width: 350px;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+}
+#scoreShow {
+    text-align: center;
+    background-color: rgb(75, 75, 75);
+    border-radius: 5px;
+}
+#highScoreShow {
+    text-align: center;
+    background-color: rgb(75, 75, 75);
+    border-radius: 5px;
+    padding: 2px;
+}
+#keyIcon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+@media (max-width: 1250px) {
+    #game_info {
+        display: none;
+    }
+    #game_info_mobile {
+        display: block;
+    }
+    #game {
+        max-height: 50%;
+    }
+}
+@media (max-width: 450px) {
+    #game_info {
+        display: none;
+    }
+    #game_info_mobile {
+        display: block;
+    }
+    #game {
+        max-height: 35%;
+    }
+}
+#main {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+#show {
+    display: none;
+}
+#setup {
+    display: none;
+}
+#preview {
+    display: none;
+    scale: 0.6;
+    padding: 30px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    margin-top: -90px;
+}
+#previewBTN {
+    display: none;
+}
+#share {
+    display: none;
+}
+#link {
+    margin-top: -60px;
+    display: none;
+}
+#shareIT {
+    display: none;
+    background-color: rgb(75, 75, 75);
+}
