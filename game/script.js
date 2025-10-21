@@ -5,6 +5,27 @@
 let validInput = true;
 let grid = gen_new_grid();
 
+//color
+//type this command to test the color :
+//grid[0][0] = 2; grid[0][1] = 4; grid[0][2] = 8; grid[0][3] = 16; grid[1][3] = 32; grid[1][2] = 64; grid[1][1] = 128; grid[1][0] = 256; grid[2][0] = 512; grid[2][1] = 1024; grid[2][2] = 2048; grid[2][3] = 4096; grid[3][3] = 8192; grid[3][2] = 16384; grid[3][1] = 32768; grid[3][0] = 65536; print();
+let color = {
+  2: "#B57C50",
+  4: "#B56950",
+  8: "#B55850",
+  16: "#B55050",
+  32: "#B55063",
+  64: "#9C447A",
+  128: "#863E8C",
+  256: "#7A47A1",
+  512: "#6347A1",
+  1024: "#574DB0",
+  2048: "#4D5DB0",
+  4096: "#4D7AB0",
+  8192: "#5A99CC",
+  16384: "#49A5B8",
+  32768: "#44AB9D",
+  65536: "#44AB82",
+};
 //Touch function
 let initialX = null;
 let initialY = null;
@@ -57,15 +78,15 @@ function moveTouch(e) {
   if (Math.abs(diffX) > Math.abs(diffY)) {
     // sliding horizontally
     if (diffX > 0 && lastMove !== 4) {
-      //left
+      move("left");
     } else if (lastMove !== 2) {
-      //ArrowRight
+      move("right");
     } else {
       // sliding vertically
       if (diffY > 0 && lastMove !== 1) {
-        //up
+        move("up");
       } else if (lastMove !== 3) {
-        // swiped down
+        move("down");
       }
     }
 
@@ -79,6 +100,7 @@ document.addEventListener("touchmove", moveTouch, { passive: false });
 
 document.addEventListener("DOMContentLoaded", () => {
   init();
+  print();
 });
 
 //Get keyboard input
@@ -89,25 +111,25 @@ document.addEventListener(
     //input "ArrowRight"
     if (keyName === "ArrowRight" && validInput === true) {
       validInput = false;
-      //right
+      move("right");
       return;
     }
     //input "ArrowLeft"
     if (keyName === "ArrowLeft" && validInput === true) {
       validInput = false;
-      //left
+      move("left");
       return;
     }
     //input "ArrowUp"
     if (keyName === "ArrowUp" && validInput === true) {
       validInput = false;
-      //up
+      move("up");
       return;
     }
     //input "ArrowDown"
     if (keyName === "ArrowDown" && validInput === true) {
       validInput = false;
-      //down
+      move("down");
       return;
     }
   },
@@ -147,6 +169,32 @@ function gen_new_grid() {
   ] = 2;
   return new_grid;
 }
+
+function addATwo() {
+  //alert("Adding a two");
+  let trng = [];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      if (grid[i][j] === 0) {
+        trng.push([i, j]);
+      }
+    }
+  }
+  console.log(trng);
+  if (trng.length === 0) {
+    gameOver();
+  }
+  let [x, y] = trng[Math.floor(Math.random() * trng.length)];
+  grid[x][y] = 2;
+  return;
+}
+
+function gameOver() {
+  alert("Game Over!");
+  //TODO
+}
+
+//IMPORTANT
 function print() {
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
@@ -156,6 +204,8 @@ function print() {
           "#3D3D3D";
       } else {
         document.getElementById("COL" + i + "CELL" + j).innerText = grid[i][j];
+        document.getElementById("COL" + i + "CELL" + j).style.backgroundColor =
+          color[grid[i][j]];
         if (grid[i][j] <= 10) {
           document.getElementById("COL" + i + "CELL" + j).style.fontSize =
             5 + "em";
@@ -168,11 +218,70 @@ function print() {
         } else if (grid[i][j] >= 1000) {
           document.getElementById("COL" + i + "CELL" + j).style.fontSize =
             2 + "em";
-        } else if (grid[i][j] >= 10000) {
+        } else {
           document.getElementById("COL" + i + "CELL" + j).style.fontSize =
             1 + "em";
         }
       }
     }
   }
+}
+
+function move(dir) {
+  //grid [i][j] i : col j : row
+  if (dir == "left" || dir == "right") {
+    for (let b = 0; b < 4; b++) {
+      for (let j = 0; j < 4; j++) {
+        if (dir == "right") {
+          for (let i = 2; i >= 0; i--) {
+            if (grid[i + 1][j] == 0) {
+              grid[i + 1][j] = grid[i][j];
+              grid[i][j] = 0;
+            } else if (grid[i + 1][j] == grid[i][j]) {
+              grid[i + 1][j] *= 2;
+              grid[i][j] = 0;
+            }
+          }
+        } else if (dir == "left") {
+          for (let i = 1; i < 4; i++) {
+            if (grid[i - 1][j] == 0) {
+              grid[i - 1][j] = grid[i][j];
+              grid[i][j] = 0;
+            } else if (grid[i - 1][j] == grid[i][j]) {
+              grid[i - 1][j] *= 2;
+              grid[i][j] = 0;
+            }
+          }
+        }
+      }
+    }
+  } else if (dir == "up" || dir == "down") {
+    for (let b = 0; b < 4; b++) {
+      for (let i = 0; i < 4; i++) {
+        if (dir == "down") {
+          for (let j = 2; j >= 0; j--) {
+            if (grid[i][j + 1] == 0) {
+              grid[i][j + 1] = grid[i][j];
+              grid[i][j] = 0;
+            } else if (grid[i][j + 1] == grid[i][j]) {
+              grid[i][j + 1] *= 2;
+              grid[i][j] = 0;
+            }
+          }
+        } else if (dir == "up") {
+          for (let j = 1; j < 4; j++) {
+            if (grid[i][j - 1] == 0) {
+              grid[i][j - 1] = grid[i][j];
+              grid[i][j] = 0;
+            } else if (grid[i][j - 1] == grid[i][j]) {
+              grid[i][j - 1] *= 2;
+              grid[i][j] = 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  addATwo();
+  print();
 }
