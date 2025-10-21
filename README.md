@@ -2,7 +2,7 @@
 A simple 2048 game in JS
 
 ## How play it ?
-Try with github pages : <a href="https://jimmxyz.github.io/Simple-2048/">jimmxyz.github.io/SimpleChess/</a>
+Try with github pages : <a href="https://jimmxyz.github.io/Simple-2048/">jimmxyz.github.io/Simple-2048/</a>
 
 Or download the files and open `index.html` in your browser 
 
