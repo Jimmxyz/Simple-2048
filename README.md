@@ -1,3 +1,5 @@
+<img src="2048Favicon.png" width="100" height="100">
+
 # Simple-2048
 A simple 2048 game in JS
 
